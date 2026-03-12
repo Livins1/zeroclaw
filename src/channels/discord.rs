@@ -616,6 +616,7 @@ impl Channel for DiscordChannel {
                     let d = if sequence >= 0 { json!(sequence) } else { json!(null) };
                     let hb = json!({"op": 1, "d": d});
                     if write.send(Message::Text(hb.to_string().into())).await.is_err() {
+                        tracing::warn!("Discord: is_err() triggerd,  hb_rx.revb()");
                         break;
                     }
                 }
@@ -776,6 +777,7 @@ impl Channel for DiscordChannel {
                     };
 
                     if tx.send(channel_msg).await.is_err() {
+                        tracing::warn!("Discord: is_err() triggerd,  tx.send(),  then break");
                         break;
                     }
                 }

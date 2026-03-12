@@ -136,6 +136,9 @@ Examples:
         #[arg(long)]
         new: bool,
     },
+    /*     /// close gateway
+    #[command(long_about = "Close gateway.")]
+    Close {}, */
 }
 
 /// Service management subcommands
