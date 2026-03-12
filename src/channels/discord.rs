@@ -645,6 +645,8 @@ impl Channel for DiscordChannel {
                             let d = if sequence >= 0 { json!(sequence) } else { json!(null) };
                             let hb = json!({"op": 1, "d": d});
                             if write.send(Message::Text(hb.to_string().into())).await.is_err() {
+
+                                tracing::warn!("Discord: hearbeat send error.");
                                 break;
                             }
                             continue;
